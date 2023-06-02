@@ -1,0 +1,35 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: cargo build --release
+
+      - name: make dir
+        run: mkdir app
+
+      - name: copy
+        run: mv ./target/release/axum-next-test ./app/axum
+
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "axum-next-test"
+          heroku_email: "inomatama08@gmail.com"
+
+          appdir: "./app"
+
+          procfile: "web: ./axum"
+          buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
