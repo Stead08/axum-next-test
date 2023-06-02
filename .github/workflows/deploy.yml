@@ -28,8 +28,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "axum-next-test"
           heroku_email: "inomatama08@gmail.com"
-
+          buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
           appdir: "./app"
-
           procfile: "web: ./axum"
-          buildpack: "https://github.com/emk/heroku-buildpack-rust.git"
