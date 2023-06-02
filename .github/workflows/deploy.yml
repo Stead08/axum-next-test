@@ -32,4 +32,4 @@ jobs:
           appdir: "./app"
 
           procfile: "web: ./axum"
-          buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
+          buildpack: "https://github.com/emk/heroku-buildpack-rust.git"
