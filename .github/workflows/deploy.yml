@@ -23,7 +23,7 @@ jobs:
       - name: copy
         run: mv ./target/release/axum-next-test ./app/axum
 
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - uses: akhileshns/heroku-deploy@v3.12.14
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "axum-next-test"
