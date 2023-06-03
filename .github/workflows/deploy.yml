@@ -9,10 +9,6 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
-defaults:
-  run:
-    shell: bash
-    working-directory: ./front
 
 jobs:
   build:
@@ -27,19 +23,21 @@ jobs:
           node-version: 16
           cache: npm
           cache-dependency-path: ./front/package-lock.json
+          working-directory: ./front
 
       - name: npm-install
         run: npm ci
+        working-directory: ./front
 
       - name: Next.js Build
         run:  npm run build
+        working-directory: ./front
 
-      - uses: actions/checkout@v3
       - name: Rust Build
-        run: cd .. && cargo build --release
+        run: cargo build --release
 
       - name: make dir
-        run: cd .. && mkdir app
+        run: mkdir app
 
       - name: copy
         run: mv ./target/release/axum-next-test ./app/axum && ./static ./app/static
