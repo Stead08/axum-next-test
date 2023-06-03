@@ -31,16 +31,15 @@ jobs:
       - name: npm-install
         run: npm ci
 
-      - uses: actions/checkout@v3
       - name: Next.js Build
         run:  npm run build
 
       - uses: actions/checkout@v3
-      - name: Build
+      - name: Rust Build
         run: cd .. && cargo build --release
 
       - name: make dir
-        run: mkdir app
+        run: cd .. && mkdir app
 
       - name: copy
         run: mv ./target/release/axum-next-test ./app/axum && ./static ./app/static
