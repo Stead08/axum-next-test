@@ -9,6 +9,10 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
+defaults:
+  run:
+    shell: bash
+    working-directory: ./front
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,18 +22,18 @@ jobs:
         with:
           node-version: 16
           cache: npm
-          cache-dependency-path: front/package-lock.json
+          cache-dependency-path: ./front/package-lock.json
 
       - name: npm-install
-        run: cd front && npm install
+        run: npm install
 
       - uses: actions/checkout@v3
       - name: Next.js Build
-        run:  cd front && npm run build
+        run:  npm run build
 
       - uses: actions/checkout@v3
       - name: Build
-        run: cargo build --release
+        run: cd .. && cargo build --release
 
       - name: make dir
         run: mkdir app
