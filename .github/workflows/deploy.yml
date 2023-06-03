@@ -43,7 +43,7 @@ jobs:
         run: mv ./target/release/axum-next-test ./app/axum
 
       - name: copy next file
-        run: mv ./static ./app/static
+        run: mv ./front/out ./app/front/out
 
       - uses: akhileshns/heroku-deploy@v3.12.14
         with:

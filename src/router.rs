@@ -7,7 +7,7 @@ use tower_http::services::ServeDir;
 pub fn create_router() -> Router{
     let api_router = api_router();
     let dir_router = Router::new()
-        .nest_service("/", ServeDir::new("static"));
+        .nest_service("/", ServeDir::new("front/out"));
 
     Router::new()
         .nest("/", dir_router)
