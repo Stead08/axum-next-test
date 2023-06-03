@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Next.js Build
-        run: mkdir static && cd front && npm run build
+        run:  cd front && npm run build
 
       - uses: actions/checkout@v3
       - name: Build
