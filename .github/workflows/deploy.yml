@@ -29,7 +29,7 @@ jobs:
           cache-dependency-path: ./front/package-lock.json
 
       - name: npm-install
-        run: npm install
+        run: npm ci
 
       - uses: actions/checkout@v3
       - name: Next.js Build
